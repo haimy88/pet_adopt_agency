@@ -17,8 +17,9 @@ import { PetContextProvider } from "./contexts/PetContext";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { UserContextProvider } from "./contexts/UserContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { AdminContextProvider } from "./contexts/AdminContext";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
+// import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 function App() {
   return (

@@ -12,12 +12,15 @@ const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
 require("dotenv").config();
 
 const { Pet } = require("./data/querySchemas");
-mongoose.connect("mongodb://localhost:27017/petsDB", {
+
+mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 const PORT = process.env.PORT;
+
+
 
 app.use(express.json());
 app.use(cors());
