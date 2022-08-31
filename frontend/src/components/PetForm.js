@@ -24,6 +24,7 @@ export default function (props) {
   const [status, setStatus] = useState();
   const [image, setImage] = useState();
   const [allergenicValue, setAllergenicValue] = useState();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const { existingPet, setOpenPopup } = props;
 
   const { addPet, editPet } = usePetContext();
@@ -123,10 +124,12 @@ export default function (props) {
 
   async function onSubmit() {
     let added = null;
+    setButtonDisabled(true)
     existingPet ? editPet(new_pet, existingPet._id) : (added = await addPet(new_pet));
     if (added) {
       setName(); //Todo clear all fields when submitted
     }
+    setButtonDisabled(false)
     setOpenPopup(false);
     window.location.reload(true);
   }
@@ -265,7 +268,7 @@ export default function (props) {
             />
           </div>
           <div className="pet_form_button">
-            <Button variant="contained" onClick={onSubmit}>
+            <Button variant="contained" onClick={onSubmit} disabled={buttonDisabled}>
               Submit
             </Button>
           </div>

@@ -30,7 +30,7 @@ export default function MiniCard(props) {
           <Typography
             gutterBottom
             component="div"
-            sx={{ fontSize: 12, margin: 0, padding: 0 }}
+            sx={{ fontSize: 12, margin: 0, paddingRight: 1.2 }}
           >
             {pet.name}
           </Typography>
