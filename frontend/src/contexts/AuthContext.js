@@ -13,7 +13,7 @@ export function AuthContextProvider({ children }) {
   );
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isAdmin"));
 
-  useEffect(() => console.log(currentUser, isAdmin), [currentUser]);
+  // useEffect(() => console.log(currentUser, isAdmin), [currentUser]);
 
   const signUp = async (new_user) => {
     try {
@@ -58,7 +58,6 @@ export function AuthContextProvider({ children }) {
         "http://localhost:3080/forgot_password/get_link",
         { email: user }
       );
-      console.log(response);
       return response;
     } catch (err) {
       return { error: err };

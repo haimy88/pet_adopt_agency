@@ -55,7 +55,6 @@ export default function OwnershipForm(props) {
       petId: pet._id,
     };
     let response = await sendOwnershipRequest(new_ownership_request, pet._id);
-    console.log(response);
     response ? setSuccess(response) : setError("Error in making the request");
     setLoading(false);
   };

@@ -26,6 +26,7 @@ const petSchema = new mongoose.Schema({
     type: String,
     default: "https://images.dog.ceo/breeds/eskimo/n02109961_2272.jpg",
   },
+  cloudinary_id: { type: "string"},
   created: { type: Date, default: Date.now() },
 });
 

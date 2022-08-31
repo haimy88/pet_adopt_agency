@@ -20,7 +20,6 @@ async function sendEmail(req, res) {
     const token = jwt.sign(payload, secret, { expiresIn: "15m" });
     const id = currentUser[0]._id;
     const link = `http://localhost:3080/forgot_password/reset/${id}/${token}`;
-    console.log(link);
     let mailOptions = {
       from: "testhaimdev@outlook.com",
       to: `${email}`,
@@ -62,7 +61,6 @@ async function resetPassword(req, res) {
 async function newPassword(req, res) {
   const { id, token } = req.params;
   const { password } = req.body;
-  console.log("password", password);
   find_user = await User.find({ _id: id });
   if (find_user.length === 0) {
     res.send("Invalid Id");
@@ -70,11 +68,8 @@ async function newPassword(req, res) {
   }
   const secret = process.env.TOKEN_SECRET_KEY + find_user[0].password;
   try {
-    console.log("got to first one");
     const payload = jwt.verify(token, secret);
-    console.log("got to second one");
     update = { password: password };
-    console.log(update);
     await User.findOneAndUpdate({ _id: id }, update);
     res.send("Password updated Successfully!");
   } catch (err) {

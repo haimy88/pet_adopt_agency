@@ -22,7 +22,7 @@ export default function PetPage() {
         <div className="pet_page_top">
           <div className="pet_page_image">
             <img
-              src={`http://localhost:3080/uploads/${activeCard.img}`}
+              src={`${activeCard.img}`}
               alt="pet image"
             />
           </div>

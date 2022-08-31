@@ -14,7 +14,6 @@ async function ownPetsModel(ownership, id) {
       startDate: ownership.startDate,
       endDate: ownership.endDate,
     });
-    console.log(new_ownership);
     await new_ownership.save();
     return new_ownership;
   } catch (err) {
@@ -35,7 +34,6 @@ async function approvePetOwnershipModel(id, req) {
         if (err) {
           console.log(err);
         } else {
-          console.log(ownership.type);
           ownership.type === "Adoption"
             ? (pet.status = "Adopted")
             : (pet.status = "Fostered");
@@ -48,7 +46,6 @@ async function approvePetOwnershipModel(id, req) {
         if (err) {
           console.log(err);
         } else {
-          console.log(ownership.type);
           pet.status = "Available";
           pet.save();
         }

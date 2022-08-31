@@ -37,7 +37,7 @@ export default function ActionAreaCard(props) {
             component="img"
             width="auto"
             height="200"
-            src={`http://localhost:3080/uploads/${pet.img}`}
+            src={`${pet.img}`}
             alt="pet image"
           />
           <CardContent>

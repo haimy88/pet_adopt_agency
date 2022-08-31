@@ -24,6 +24,7 @@ const {
 const createPet = async (req, res) => {
   try {
     const new_pet = await createPetModel(req);
+    res.json(new_pet)
     if (new_pet.error) {
       throw new Error(new_pet.error);
     }
@@ -162,7 +163,6 @@ const approvePetOwnership = async (req, res) => {
     if (approval.error) {
       throw new Error(approval.err);
     }
-    console.log(approval, "line 165 pets controller");
     if (req.body.status === "Return Pending") {
       res
         .status(200)

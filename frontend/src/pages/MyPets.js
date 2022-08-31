@@ -12,8 +12,6 @@ export default function MyPets() {
     (pet) => pet.status === "Fostered" || pet.status === "Adopted"
   );
 
-  console.log(active_ownerships);
-
   const my_pets_html = (
     <>
       <div className="my_pets_wrapper">

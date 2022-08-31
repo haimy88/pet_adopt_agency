@@ -61,7 +61,6 @@ export default function PetsTable() {
   };
 
   const handleDeletePet = async (pet) => {
-    console.log(pet._id);
     await deletePet(pet);
     window.location.reload(true);
   };

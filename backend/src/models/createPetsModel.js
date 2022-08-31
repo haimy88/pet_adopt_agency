@@ -1,8 +1,12 @@
 const { Pet } = require("../data/querySchemas");
+const cloudinary = require("../config/cloudinary");
 
 async function deletePetModel(req) {
   try {
-    Pet.find({ _id: req.params.id }).remove().exec();
+    let pet = await Pet.find({ _id: req.params.id })
+    await cloudinary.uploader.destroy(pet[0].cloudinary_id);
+    console.log(pet[0].cloudinary_id);
+    await pet[0].remove().exec()
   } catch (err) {
     return { error: err };
   }
@@ -10,6 +14,7 @@ async function deletePetModel(req) {
 
 async function createPetModel(req) {
   try {
+    const result = await cloudinary.uploader.upload(req.file.path)
     const pet = new Pet({
       name: req.body.name,
       type: req.body.type,
@@ -21,7 +26,8 @@ async function createPetModel(req) {
       bio: req.body.bio,
       hyperallergenic: req.body.hyperallergenic,
       status: req.body.status,
-      img: req.file.filename,
+      img: result.secure_url,
+      cloudinary_id: result.public_id,
     });
     pet.save();
     return true;
@@ -44,9 +50,9 @@ async function updatePetModel(req) {
     status: req.body.status,
   };
   if (req.body.img) {
-    update.img = req.body.img;
+    const result = await cloudinary.uploader.upload(req.file.path)
+    update.img = result.secure_url;
   }
-  console.log(update);
   try {
     await Pet.findByIdAndUpdate({ _id: req.params.id }, update);
     return true;

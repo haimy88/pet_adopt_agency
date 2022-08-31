@@ -22,7 +22,7 @@ export default function MiniCard(props) {
           component="img"
           width="auto"
           height="90"
-          src={`http://localhost:3080/uploads/${pet.img}`}
+          src={`${pet.img}`}
           alt="pet image"
           sx={{ maxWidth: 160 }}
         />
