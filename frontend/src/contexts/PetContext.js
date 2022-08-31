@@ -126,10 +126,10 @@ export function PetContextProvider({ children }) {
     }
   };
 
-  const deletePet = (pet) => {
+  const deletePet = async (pet) => {
     if (window.confirm("Delete the item?")) {
       try {
-        axios
+        await axios
           .delete(`http://localhost:3080/pet/${pet._id}`)
           .then((response) => {
             alert(response.data);

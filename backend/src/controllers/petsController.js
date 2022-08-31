@@ -24,7 +24,6 @@ const {
 const createPet = async (req, res) => {
   try {
     const new_pet = await createPetModel(req);
-    res.json(new_pet)
     if (new_pet.error) {
       throw new Error(new_pet.error);
     }

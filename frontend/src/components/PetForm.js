@@ -121,9 +121,9 @@ export default function (props) {
     }
   }
 
-  function onSubmit() {
+  async function onSubmit() {
     let added = null;
-    existingPet ? editPet(new_pet, existingPet._id) : (added = addPet(new_pet));
+    existingPet ? editPet(new_pet, existingPet._id) : (added = await addPet(new_pet));
     if (added) {
       setName(); //Todo clear all fields when submitted
     }
