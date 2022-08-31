@@ -25,6 +25,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import ForgotPassword from "../components/ForgotPassword";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 
@@ -53,17 +54,17 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const navLinksLoggedIn = [
-  <NavLink style={{ textDecoration: "none" }} to="/">
-    Home
-  </NavLink>,
-  <NavLink style={{ textDecoration: "none" }} to="/Profile">
-    Profile
-  </NavLink>,
-  <NavLink style={{ textDecoration: "none" }} to="/MyPets">
-    MyPets
-  </NavLink>,
-];
+// const navLinksLoggedIn = [
+//   <NavLink style={{ textDecoration: "none" }} to="/">
+//     Home
+//   </NavLink>,
+//   <NavLink style={{ textDecoration: "none" }} to="/Profile">
+//     Profile
+//   </NavLink>,
+//   <NavLink style={{ textDecoration: "none" }} to="/MyPets">
+//     MyPets
+//   </NavLink>,
+// ];
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -104,6 +105,8 @@ export default function PersistentDrawerLeft(props) {
     profile_html,
   } = props;
 
+  const navigate = useNavigate();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -137,8 +140,9 @@ export default function PersistentDrawerLeft(props) {
                   noWrap
                   component="div"
                   sx={{ flexGrow: 1 }}
+
                 >
-                  <p className="welcome_banner">
+                  <p onClick={() => navigate("/")} className="welcome_banner">
                     {!currentUser && "Welcome to"} FuRiendZone
                   </p>
                 </Typography>
