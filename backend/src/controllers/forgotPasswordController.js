@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { User } = require("../data/querySchemas");
 const nodemailer = require("nodemailer");
+const handlebars = require("handlebars");
+const fs = require("fs");
 
 let transporter = nodemailer.createTransport({
   service: "Outlook",
@@ -25,6 +27,7 @@ async function sendEmail(req, res) {
       to: `${email}`,
       subject: "Reset Password Link",
       text: `Rest your password here: ${link}`,
+      html: { path: `backend/views/reset-password.ejs` },
     };
     transporter.sendMail(mailOptions, function (err, data) {
       if (err) {
