@@ -18,9 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-const PORT = process.env.PORT;
-
-
+const PORT = process.env.PORT || 3080;
 
 app.use(express.json());
 app.use(cors());
