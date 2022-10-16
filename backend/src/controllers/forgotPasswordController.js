@@ -2,8 +2,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { User } = require("../data/querySchemas");
 const nodemailer = require("nodemailer");
-const handlebars = require("handlebars");
-const fs = require("fs");
 
 let transporter = nodemailer.createTransport({
   service: "Outlook",
