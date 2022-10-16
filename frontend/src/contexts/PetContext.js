@@ -40,7 +40,9 @@ export function PetContextProvider({ children }) {
   const quickSearchPets = async (word) => {
     try {
       await axios
-        .get("http://localhost:3080/pet/search", { params: { general: word } })
+        .get("https://ancient-stream-02075.herokuapp.com/pet/search", {
+          params: { general: word },
+        })
         .then((response) => {
           setPetData(response.data);
         });
@@ -52,7 +54,9 @@ export function PetContextProvider({ children }) {
   const advancedSearchPets = async (criteria) => {
     try {
       await axios
-        .get("http://localhost:3080/pet/search", { params: criteria })
+        .get("https://ancient-stream-02075.herokuapp.com/pet/search", {
+          params: criteria,
+        })
         .then((response) => {
           setPetData(response.data);
         });
@@ -84,7 +88,11 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .post("http://localhost:3080/admin/add", formData, headersConfig)
+        .post(
+          "https://ancient-stream-02075.herokuapp.com/admin/add",
+          formData,
+          headersConfig
+        )
         .then((response) => {
           alert(response.data);
         });
@@ -116,7 +124,11 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .put(`http://localhost:3080/admin/pet/${_id}`, new_pet, headersConfig)
+        .put(
+          `https://ancient-stream-02075.herokuapp.com/admin/pet/${_id}`,
+          new_pet,
+          headersConfig
+        )
         .then((response) => {
           alert(response.data);
         });
@@ -130,7 +142,7 @@ export function PetContextProvider({ children }) {
     if (window.confirm("Delete the item?")) {
       try {
         await axios
-          .delete(`http://localhost:3080/pet/${pet._id}`)
+          .delete(`https://ancient-stream-02075.herokuapp.com/pet/${pet._id}`)
           .then((response) => {
             alert(response.data);
           });
