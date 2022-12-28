@@ -26,11 +26,7 @@ export function PetContextProvider({ children }) {
 
   const getAllPets = async () => {
     try {
-      // const res = await axios.get("http://localhost:3080/pet/search");
       const data = await petsAPI();
-      // .then((response) => {
-      //   setPetlib(response.data);
-      // });
       setPetlib(data);
     } catch (err) {
       return { error: err };
@@ -40,7 +36,7 @@ export function PetContextProvider({ children }) {
   const quickSearchPets = async (word) => {
     try {
       await axios
-        .get("https://ancient-stream-02075.herokuapp.com/pet/search", {
+        .get("http://localhost:3080/pet/search", {
           params: { general: word },
         })
         .then((response) => {
@@ -54,7 +50,7 @@ export function PetContextProvider({ children }) {
   const advancedSearchPets = async (criteria) => {
     try {
       await axios
-        .get("https://ancient-stream-02075.herokuapp.com/pet/search", {
+        .get("http://localhost:3080/pet/search", {
           params: criteria,
         })
         .then((response) => {
@@ -88,11 +84,7 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .post(
-          "https://ancient-stream-02075.herokuapp.com/admin/add",
-          formData,
-          headersConfig
-        )
+        .post("http://localhost:3080/admin/add", formData, headersConfig)
         .then((response) => {
           alert(response.data);
         });
@@ -124,11 +116,7 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .put(
-          `https://ancient-stream-02075.herokuapp.com/admin/pet/${_id}`,
-          new_pet,
-          headersConfig
-        )
+        .put(`http://localhost:3080/admin/pet/${_id}`, new_pet, headersConfig)
         .then((response) => {
           alert(response.data);
         });
@@ -142,7 +130,7 @@ export function PetContextProvider({ children }) {
     if (window.confirm("Delete the item?")) {
       try {
         await axios
-          .delete(`https://ancient-stream-02075.herokuapp.com/pet/${pet._id}`)
+          .delete(`http://localhost:3080/pet/${pet._id}`)
           .then((response) => {
             alert(response.data);
           });

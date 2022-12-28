@@ -20,6 +20,8 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const PORT = process.env.PORT || 3080;
 
+//consider storing .env variables in more secure location
+
 app.use(express.json());
 app.use(
   cors({

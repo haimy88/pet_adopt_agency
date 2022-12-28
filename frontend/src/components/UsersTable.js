@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAdminContext } from "../contexts/AdminContext";
 import { UseTable } from "./UseTable";
 import {
@@ -26,7 +26,7 @@ const headCells = [
 ];
 
 export default function UsersTable() {
-  const { allUsers, getFullUserInfo } = useAdminContext();
+  const { allUsers, getAllUsers, getFullUserInfo } = useAdminContext();
   const [openPopup, setOpenPopup] = useState(false);
   const [userInfo, setUserInfo] = useState();
 
@@ -35,6 +35,10 @@ export default function UsersTable() {
       return items;
     },
   });
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   const handleGetInfo = async (item) => {
     const info = await getFullUserInfo(item);

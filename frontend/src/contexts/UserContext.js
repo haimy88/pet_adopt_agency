@@ -24,7 +24,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `https://ancient-stream-02075.herokuapp.com/user/${user.id}`,
+        `http://localhost:3080/user/${user.id}`,
         user,
         headersConfig
       );
@@ -41,7 +41,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.post(
-        `https://ancient-stream-02075.herokuapp.com/pet/${pet._id}/save`,
+        `http://localhost:3080/pet/${pet._id}/save`,
         pet,
         headersConfig
       );
@@ -58,7 +58,7 @@ export function UserContextProvider({ children }) {
       const user = JSON.parse(localStorage.getItem("user"));
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.get(
-        `https://ancient-stream-02075.herokuapp.com/pet/user/${user.id}/`,
+        `http://localhost:3080/pet/user/${user.id}/`,
         headersConfig
       );
       setSavedPets(res.data);
@@ -74,7 +74,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.delete(
-        `https://ancient-stream-02075.herokuapp.com/pet/${pet._id}/save`,
+        `http://localhost:3080/pet/${pet._id}/save`,
         headersConfig
       );
       setTimeout(() => window.location.reload(true), 1200);
@@ -89,7 +89,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.get(
-        `https://ancient-stream-02075.herokuapp.com/pet/${petId}/adopt`,
+        `http://localhost:3080/pet/${petId}/adopt`,
         headersConfig
       );
       return res;
@@ -103,7 +103,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.post(
-        `https://ancient-stream-02075.herokuapp.com/pet/${request.petId}/adopt`,
+        `http://localhost:3080/pet/${request.petId}/adopt`,
         request,
         headersConfig
       );
@@ -118,7 +118,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.get(
-        `https://ancient-stream-02075.herokuapp.com/user/${id}/requests`,
+        `http://localhost:3080/user/${id}/requests`,
         headersConfig
       );
       setUserRequests(res.data);
@@ -134,7 +134,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `https://ancient-stream-02075.herokuapp.com/pet/${ownership.petId}/adopt`,
+        `http://localhost:3080/pet/${ownership.petId}/adopt`,
         { status: "Return Pending" },
         headersConfig
       );

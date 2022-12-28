@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAdminContext } from "../contexts/AdminContext";
 import { UseTable } from "./UseTable";
 import {
@@ -28,8 +28,15 @@ const headCells = [
 ];
 
 export default function RequestTableAdmin() {
-  const { ownerships, approveRequest, rejectOwnershipRequest, confirmReturn } =
-    useAdminContext();
+  const {
+    ownerships,
+    getAllOwnerships,
+    approveRequest,
+    rejectOwnershipRequest,
+    confirmReturn,
+  } = useAdminContext();
+
+  useEffect(() => getAllOwnerships(), []);
 
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {

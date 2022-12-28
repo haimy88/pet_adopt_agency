@@ -18,7 +18,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.get(
-        "https://ancient-stream-02075.herokuapp.com/pet/adopt",
+        "http://localhost:3080/pet/adopt",
         headersConfig
       );
       setOwnerships(response.data);
@@ -32,7 +32,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.get(
-        "https://ancient-stream-02075.herokuapp.com/user",
+        "http://localhost:3080/user",
         headersConfig
       );
       setAllUsers(response.data);
@@ -46,7 +46,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `https://ancient-stream-02075.herokuapp.com/pet/${ownership.petId}/adopt`,
+        `http://localhost:3080/pet/${ownership.petId}/adopt`,
         { status: "Approved" },
         headersConfig
       );
@@ -62,7 +62,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `https://ancient-stream-02075.herokuapp.com/pet/${ownership.petId}/adopt`,
+        `http://localhost:3080/pet/${ownership.petId}/adopt`,
         { status: "Rejected" },
         headersConfig
       );
@@ -77,7 +77,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `https://ancient-stream-02075.herokuapp.com/pet/${ownership.petId}/adopt`,
+        `http://localhost:3080/pet/${ownership.petId}/adopt`,
         { status: "Returned" },
         headersConfig
       );
@@ -92,7 +92,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.get(
-        `https://ancient-stream-02075.herokuapp.com/user/${user._id}/full`,
+        `http://localhost:3080/user/${user._id}/full`,
         headersConfig
       );
       return response.data;
@@ -100,13 +100,6 @@ export function AdminContextProvider({ children }) {
       return { error: err };
     }
   };
-
-  useEffect(() => {
-    if (isAdmin) {
-      getAllOwnerships();
-      getAllUsers();
-    }
-  }, []);
 
   return (
     <AdminContext.Provider

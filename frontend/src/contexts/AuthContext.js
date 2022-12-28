@@ -13,14 +13,9 @@ export function AuthContextProvider({ children }) {
   );
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isAdmin"));
 
-  // useEffect(() => console.log(currentUser, isAdmin), [currentUser]);
-
   const signUp = async (new_user) => {
     try {
-      const user = await axios.post(
-        "https://ancient-stream-02075.herokuapp.com/signup",
-        new_user
-      );
+      const user = await axios.post("http://localhost:3080/signup", new_user);
       return user;
     } catch (err) {
       return { error: err };
@@ -30,7 +25,7 @@ export function AuthContextProvider({ children }) {
   const login = async (user) => {
     try {
       const existing_user = await axios.post(
-        "https://ancient-stream-02075.herokuapp.com/login",
+        "http://localhost:3080/login",
         user
       );
       if (existing_user) {
@@ -58,7 +53,7 @@ export function AuthContextProvider({ children }) {
   const resetPassword = async (user) => {
     try {
       const response = await axios.post(
-        "https://ancient-stream-02075.herokuapp.com/forgot_password/get_link",
+        "http://localhost:3080/forgot_password/get_link",
         { email: user }
       );
       return response;
