@@ -15,10 +15,7 @@ export function AuthContextProvider({ children }) {
 
   const signUp = async (new_user) => {
     try {
-      const user = await axios.post(
-        "http://localhost:3080/auth/signup",
-        new_user
-      );
+      const user = await axios.post("/auth/signup", new_user);
       return user;
     } catch (err) {
       return { error: err };
@@ -27,10 +24,7 @@ export function AuthContextProvider({ children }) {
 
   const login = async (user) => {
     try {
-      const existing_user = await axios.post(
-        "http://localhost:3080/auth/login",
-        user
-      );
+      const existing_user = await axios.post("/auth/login", user);
       if (existing_user) {
         localStorage.setItem("token", existing_user.data.token);
         localStorage.setItem("user", JSON.stringify(existing_user.data));
@@ -55,10 +49,9 @@ export function AuthContextProvider({ children }) {
 
   const resetPassword = async (user) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3080/forgot_password/get_link",
-        { email: user }
-      );
+      const response = await axios.post("/forgot_password/get_link", {
+        email: user,
+      });
       return response;
     } catch (err) {
       return { error: err };

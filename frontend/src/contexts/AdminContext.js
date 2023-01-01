@@ -17,10 +17,7 @@ export function AdminContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const response = await axios.get(
-        "http://localhost:3080/pet/adopt",
-        headersConfig
-      );
+      const response = await axios.get("/pet/adopt", headersConfig);
       setOwnerships(response.data);
     } catch (err) {
       return { error: err };
@@ -31,10 +28,7 @@ export function AdminContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const response = await axios.get(
-        "http://localhost:3080/user",
-        headersConfig
-      );
+      const response = await axios.get("/user", headersConfig);
       setAllUsers(response.data);
     } catch (err) {
       return { error: err };
@@ -46,7 +40,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `http://localhost:3080/pet/${ownership.petId}/adopt`,
+        `pet/${ownership.petId}/adopt`,
         { status: "Approved" },
         headersConfig
       );
@@ -62,7 +56,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `http://localhost:3080/pet/${ownership.petId}/adopt`,
+        `/pet/${ownership.petId}/adopt`,
         { status: "Rejected" },
         headersConfig
       );
@@ -77,7 +71,7 @@ export function AdminContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `http://localhost:3080/pet/${ownership.petId}/adopt`,
+        `/pet/${ownership.petId}/adopt`,
         { status: "Returned" },
         headersConfig
       );
@@ -91,10 +85,7 @@ export function AdminContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const response = await axios.get(
-        `http://localhost:3080/user/${user._id}/full`,
-        headersConfig
-      );
+      const response = await axios.get(`/user/${user._id}/full`, headersConfig);
       return response.data;
     } catch (err) {
       return { error: err };

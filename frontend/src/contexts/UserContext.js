@@ -23,11 +23,7 @@ export function UserContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const response = await axios.put(
-        `http://localhost:3080/user/${user.id}`,
-        user,
-        headersConfig
-      );
+      const response = await axios.put(`/user/${user.id}`, user, headersConfig);
       localStorage.setItem("user", JSON.stringify(response.data));
       setCurrentUser(response.data);
       return response;
@@ -40,11 +36,7 @@ export function UserContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const res = await axios.post(
-        `http://localhost:3080/pet/${pet._id}/save`,
-        pet,
-        headersConfig
-      );
+      const res = await axios.post(`/pet/${pet._id}/save`, pet, headersConfig);
       getAllOwnedAndSavedPets();
       return res;
     } catch (err) {
@@ -57,10 +49,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const res = await axios.get(
-        `http://localhost:3080/pet/user/${user.id}/`,
-        headersConfig
-      );
+      const res = await axios.get(`/pet/user/${user.id}/`, headersConfig);
       setSavedPets(res.data);
       localStorage.setItem("all_pets", JSON.stringify(res.data));
       return res;
@@ -73,10 +62,7 @@ export function UserContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const res = await axios.delete(
-        `http://localhost:3080/pet/${pet._id}/save`,
-        headersConfig
-      );
+      const res = await axios.delete(`/pet/${pet._id}/save`, headersConfig);
       setTimeout(() => window.location.reload(true), 1200);
       return res;
     } catch (err) {
@@ -88,10 +74,7 @@ export function UserContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const res = await axios.get(
-        `http://localhost:3080/pet/${petId}/adopt`,
-        headersConfig
-      );
+      const res = await axios.get(`/pet/${petId}/adopt`, headersConfig);
       return res;
     } catch (err) {
       return { error: err };
@@ -103,7 +86,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const res = await axios.post(
-        `http://localhost:3080/pet/${request.petId}/adopt`,
+        `/pet/${request.petId}/adopt`,
         request,
         headersConfig
       );
@@ -117,10 +100,7 @@ export function UserContextProvider({ children }) {
     try {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
-      const res = await axios.get(
-        `http://localhost:3080/user/${id}/requests`,
-        headersConfig
-      );
+      const res = await axios.get(`/user/${id}/requests`, headersConfig);
       setUserRequests(res.data);
       localStorage.setItem("userRequests", JSON.stringify(res.data));
       return res;
@@ -134,7 +114,7 @@ export function UserContextProvider({ children }) {
       const token = localStorage.getItem("token");
       const headersConfig = { headers: { Authorization: "Bearer " + token } };
       const response = await axios.put(
-        `http://localhost:3080/pet/${ownership.petId}/adopt`,
+        `/pet/${ownership.petId}/adopt`,
         { status: "Return Pending" },
         headersConfig
       );

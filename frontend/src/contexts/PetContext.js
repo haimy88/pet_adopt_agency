@@ -36,7 +36,7 @@ export function PetContextProvider({ children }) {
   const quickSearchPets = async (word) => {
     try {
       await axios
-        .get("http://localhost:3080/pet/search", {
+        .get("/pet/search", {
           params: { general: word },
         })
         .then((response) => {
@@ -50,7 +50,7 @@ export function PetContextProvider({ children }) {
   const advancedSearchPets = async (criteria) => {
     try {
       await axios
-        .get("http://localhost:3080/pet/search", {
+        .get("/pet/search", {
           params: criteria,
         })
         .then((response) => {
@@ -116,7 +116,7 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .put(`http://localhost:3080/admin/pet/${_id}`, new_pet, headersConfig)
+        .put(`/admin/pet/${_id}`, new_pet, headersConfig)
         .then((response) => {
           alert(response.data);
         });
@@ -129,11 +129,9 @@ export function PetContextProvider({ children }) {
   const deletePet = async (pet) => {
     if (window.confirm("Delete the item?")) {
       try {
-        await axios
-          .delete(`http://localhost:3080/pet/${pet._id}`)
-          .then((response) => {
-            alert(response.data);
-          });
+        await axios.delete(`/pet/${pet._id}`).then((response) => {
+          alert(response.data);
+        });
       } catch (err) {
         return { error: err };
       }
