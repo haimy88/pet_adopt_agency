@@ -15,7 +15,10 @@ export function AuthContextProvider({ children }) {
 
   const signUp = async (new_user) => {
     try {
-      const user = await axios.post("http://localhost:3080/signup", new_user);
+      const user = await axios.post(
+        "http://localhost:3080/auth/signup",
+        new_user
+      );
       return user;
     } catch (err) {
       return { error: err };
@@ -25,7 +28,7 @@ export function AuthContextProvider({ children }) {
   const login = async (user) => {
     try {
       const existing_user = await axios.post(
-        "http://localhost:3080/login",
+        "http://localhost:3080/auth/login",
         user
       );
       if (existing_user) {

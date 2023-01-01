@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
@@ -20,8 +21,6 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const PORT = process.env.PORT || 3080;
 
-//consider storing .env variables in more secure location
-
 app.use(express.json());
 app.use(
   cors({
@@ -32,12 +31,17 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../../frontend/build")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../frontend/build"));
+});
 
 app.set("view engine", "ejs");
 
 app.use("/uploads", express.static("uploads"));
 
-app.use("/", authRoutes);
+app.use("/auth", authRoutes);
 
 app.use("/user", userRoutes);
 
