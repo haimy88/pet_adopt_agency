@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { petsAPI } from "../api/pets";
 
 const PetContext = React.createContext();
 
