@@ -10,7 +10,7 @@ const petsRoutes = require("./routes/petRoutes");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
-require("dotenv").config();
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
 
 const { Pet } = require("./data/querySchemas");
 

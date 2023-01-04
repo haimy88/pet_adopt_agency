@@ -29,7 +29,7 @@ const headCells = [
 ];
 
 export default function PetsTable() {
-  const { petlib, setPetData } = usePetContext();
+  const { petData, getAllPets } = usePetContext();
   const [openPopup, setOpenPopup] = useState(false);
   const [existingPet, setExistingPet] = useState(null);
   const [filterFn, setFilterFn] = useState({
@@ -38,11 +38,14 @@ export default function PetsTable() {
     },
   });
 
+  useEffect(() => {
+    getAllPets();
+  }, []);
+
   const { deletePet } = usePetContext();
 
   const { TblContainer, TblHead, TblPagination, petsAfterPagingAndSorting } =
-    UseTable(petlib, headCells, filterFn);
-  useEffect(() => setPetData(petlib));
+    UseTable(petData, headCells, filterFn);
 
   const handleSearch = (e) => {
     let target = e.target;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { petsAPI } from "../api/pets";
 
@@ -9,25 +9,12 @@ export function usePetContext() {
 }
 
 export function PetContextProvider({ children }) {
-  const [petlib, setPetlib] = useState([]);
   const [petData, setPetData] = useState([]);
-
-  useEffect(() => {
-    getAllPets();
-  }, []);
-
-  useEffect(() => {
-    if (petData) {
-      localStorage.setItem("search", JSON.stringify(petData));
-    } else {
-      localStorage.removeItem("search");
-    }
-  }, [petData]);
 
   const getAllPets = async () => {
     try {
       const data = await petsAPI();
-      setPetlib(data);
+      setPetData(data);
     } catch (err) {
       return { error: err };
     }
@@ -84,7 +71,7 @@ export function PetContextProvider({ children }) {
         },
       };
       await axios
-        .post("http://localhost:3080/admin/add", formData, headersConfig)
+        .post("/admin/add", formData, headersConfig)
         .then((response) => {
           alert(response.data);
         });
@@ -142,8 +129,6 @@ export function PetContextProvider({ children }) {
     <PetContext.Provider
       value={{
         getAllPets,
-        petlib,
-        setPetlib,
         addPet,
         petData,
         setPetData,

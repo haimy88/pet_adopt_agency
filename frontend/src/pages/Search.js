@@ -1,5 +1,5 @@
 import React from "react";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import Drawer from "../components/Drawer.tsx";
 import Card from "../components/Card";
 import { usePetContext } from "../contexts/PetContext";
@@ -12,14 +12,14 @@ export default function Search() {
   const { petData, setPetData } = usePetContext();
   const { handleAdvancedSearchOpen } = useModalContext();
 
-  useMemo(() => {
-    let data = JSON.parse(localStorage.getItem("search"));
-    if (data) {
-      setPetData(data);
-    } else {
-      setPetData([]);
-    }
-  }, []);
+  // useMemo(() => {
+  //   let data = JSON.parse(localStorage.getItem("search"));
+  //   if (data) {
+  //     setPetData(data);
+  //   } else {
+  //     setPetData([]);
+  //   }
+  // }, []);
 
   const search_html = (
     <>
