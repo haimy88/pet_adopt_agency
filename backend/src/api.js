@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
+const https = require("https");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
@@ -11,6 +12,18 @@ const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
+const hostname = "furiendzonepets.com";
+const httpsPort = 443;
+
+const httpsOptions = {
+  cert: fs.readFileSync("../../furiendzonepets_com/furiendzonepets_com.crt"),
+  ca: fs.readFileSync(
+    "../../furiendzonepets_com/furiendzonepets_com.ca-bundle"
+  ),
+  key: fs.readFileSync("../../furiendzonepets_com/code.txt"),
+};
+
+const httpsServer = https.createServer(httpsOptions, app);
 
 const { Pet } = require("./data/querySchemas");
 
@@ -19,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-const PORT = process.env.PORT || 3080;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(
@@ -52,3 +65,5 @@ app.use("/pet", petsRoutes);
 app.use("/forgot_password", forgotPasswordRoutes);
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+
+// httpsServer.listen(httpsPort, () => console.log(httpsPort));
