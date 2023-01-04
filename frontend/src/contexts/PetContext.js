@@ -13,7 +13,7 @@ export function PetContextProvider({ children }) {
 
   const getAllPets = async () => {
     try {
-      const data = await petsAPI();
+      const data = await axios.get("/pet/search");
       setPetData(data);
     } catch (err) {
       return { error: err };
