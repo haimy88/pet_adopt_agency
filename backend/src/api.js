@@ -12,18 +12,18 @@ const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
-const hostname = "furiendzonepets.com";
-const httpsPort = 443;
+// const hostname = "furiendzonepets.com";
+// const httpsPort = 443;
 
-const httpsOptions = {
-  cert: fs.readFileSync("../../furiendzonepets_com/furiendzonepets_com.crt"),
-  ca: fs.readFileSync(
-    "../../furiendzonepets_com/furiendzonepets_com.ca-bundle"
-  ),
-  key: fs.readFileSync("../../furiendzonepets_com/code.txt"),
-};
+// const httpsOptions = {
+//   cert: fs.readFileSync("../../furiendzonepets_com/furiendzonepets_com.crt"),
+//   ca: fs.readFileSync(
+//     "../../furiendzonepets_com/furiendzonepets_com.ca-bundle"
+//   ),
+//   key: fs.readFileSync("../../furiendzonepets_com/code.txt"),
+// };
 
-const httpsServer = https.createServer(httpsOptions, app);
+// const httpsServer = https.createServer(httpsOptions, app);
 
 const { Pet } = require("./data/querySchemas");
 
