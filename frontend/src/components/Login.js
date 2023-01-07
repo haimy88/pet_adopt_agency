@@ -15,6 +15,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Modal from "@mui/material/Modal";
 import { useModalContext } from "../contexts/ModalContext";
 import { useAuthContext } from "../contexts/AuthContext";
+import { useWindowSize } from "../hooks/windowSize";
 
 export default function Login() {
   const [email, setEmail] = useState();
@@ -32,6 +33,8 @@ export default function Login() {
 
   const { login } = useAuthContext();
 
+  const windowSize = useWindowSize();
+
   useEffect(() => {
     setError();
   }, [loginOpen]);
@@ -45,6 +48,7 @@ export default function Login() {
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const inputStyle = { margin: "8px 0" };
   const buttonStyle = { margin: "8px 0" };
+  const buttonStyleSmallWindow = { backgroundColor: "#E56B6B" };
 
   const handleEmail = (e) => {
     setEmail(e);
@@ -83,7 +87,12 @@ export default function Login() {
   return (
     <>
       <div className="app_bar_button">
-        <Button color="primary" variant="contained" onClick={handleLoginOpen}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleLoginOpen}
+          sx={windowSize[1] < 450 && buttonStyleSmallWindow}
+        >
           Log In
         </Button>
       </div>

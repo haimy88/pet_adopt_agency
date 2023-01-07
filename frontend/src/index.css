@@ -97,16 +97,19 @@ body {
 
 .home-wrapper::before {
   content: "";
-  background-color: blue;
+  background-color: #8F796B;
   background-image: url("/src/images/pexels-christian-domingues-731022.jpg");
-  background-size: 100%;
-  background-attachment: fixed;
+  background-size: cover;
+  /* background-attachment: fixed; */
   position: absolute;
+  background-position: 80%;
+  background-repeat: no-repeat;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
   opacity: 0.65;
+  
   z-index: -1;
 }
 
@@ -122,6 +125,12 @@ body {
   /* color: #d16458; */
   /* color: #3f89bf; */
   color: #e56b6b;
+}
+
+@media (max-width: 950px) {
+  .home_title {
+    font-size: 15vw;
+  }
 }
 
 h1 {
@@ -454,4 +463,15 @@ h1 {
   justify-content: center;
   font-size: 20px;
 
+}
+
+.home_buttons_small_screen {
+  display: flex;
+  justify-content: space-around;
+
+}
+@media(max-width: 440px) {
+  /* .app_bar {
+    justify-content: center;
+  } */
 }

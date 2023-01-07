@@ -14,6 +14,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Modal from "@mui/material/Modal";
 import { useModalContext } from "../contexts/ModalContext";
 import { useAuthContext } from "../contexts/AuthContext";
+import { useWindowSize } from "../hooks/windowSize";
 
 export default function Login() {
   const [firstName, setFirstName] = useState();
@@ -26,6 +27,8 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const windowSize = useWindowSize();
 
   const { handleLoginOpen, signupOpen, handleSignupOpen, handleSignupClose } =
     useModalContext();
@@ -40,6 +43,7 @@ export default function Login() {
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const inputStyle = { margin: "8px 0" };
   const buttonStyle = { margin: "8px 0" };
+  const buttonStyleSmallWindow = { backgroundColor: "#E56B6B" };
 
   useEffect(() => {
     setSuccess("");
@@ -109,7 +113,12 @@ export default function Login() {
   return (
     <>
       <div className="app_bar_button">
-        <Button variant="contained" color="primary" onClick={handleSignupOpen}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={windowSize[1] < 450 && buttonStyleSmallWindow}
+          onClick={handleSignupOpen}
+        >
           Sign Up
         </Button>
       </div>
@@ -215,6 +224,7 @@ export default function Login() {
                   handleLoginOpen();
                   handleSignupClose();
                 }}
+                sx={{ backgroundColor: "#9B1CA5" }}
               >
                 Login
               </Button>

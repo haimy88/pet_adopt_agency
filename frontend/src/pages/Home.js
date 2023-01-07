@@ -2,11 +2,16 @@ import React, { useEffect } from "react";
 import Drawer from "../components/Drawer.tsx";
 import QuickSearch from "../components/QuickSearch";
 import { useAuthContext } from "../contexts/AuthContext";
+import Login from "../components/Login";
+import Signup from "../components/Signup";
+import { useWindowSize } from "../hooks/windowSize";
 
 export default function Home() {
   const { currentUser, isAdmin } = useAuthContext();
 
   useEffect(() => localStorage.removeItem("search"));
+
+  const windowSize = useWindowSize();
 
   const home_html = (
     <>
@@ -18,6 +23,12 @@ export default function Home() {
         )}
         {currentUser && !isAdmin && <h1 className="home_title">User Portal</h1>}
         {currentUser && isAdmin && <h1 className="home_title">Admin Portal</h1>}
+        {windowSize[1] < 600 && (
+          <div className="home_buttons_small_screen">
+            <Signup />
+            <Login />
+          </div>
+        )}
         <div className="basic_search_wrapper">
           <QuickSearch />
         </div>

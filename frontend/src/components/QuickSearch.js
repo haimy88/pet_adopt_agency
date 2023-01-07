@@ -4,11 +4,14 @@ import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 import { usePetContext } from "../contexts/PetContext";
 import { useNavigate } from "react-router-dom";
+import { useWindowSize } from "../hooks/windowSize";
 
 export default function QuickSearch() {
   const { quickSearchPets } = usePetContext();
 
   const navigate = useNavigate();
+
+  const windowSize = useWindowSize();
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
@@ -27,6 +30,18 @@ export default function QuickSearch() {
       marginLeft: theme.spacing(1),
       width: "auto",
     },
+    // [theme.breakpoints.down("lg")]: {
+    //   marginLeft: theme.spacing(1),
+    //   width: "auto",
+    // },
+    // [theme.breakpoints.down("md")]: {
+    //   marginLeft: theme.spacing(1),
+    //   width: "auto",
+    // },
+    // [theme.breakpoints.down("md")]: {
+    //   marginLeft: theme.spacing(1),
+    //   width: "auto",
+    // },
   }));
 
   const SearchIconWrapper = styled("div")(({ theme }) => ({

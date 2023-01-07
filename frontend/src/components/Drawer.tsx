@@ -24,7 +24,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import ForgotPassword from "../components/ForgotPassword";
-import { NavLink } from "react-router-dom";
+import { useWindowSize } from "../hooks/windowSize";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -107,6 +107,8 @@ export default function PersistentDrawerLeft(props) {
 
   const navigate = useNavigate();
 
+  const windowSize = useWindowSize();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -140,14 +142,14 @@ export default function PersistentDrawerLeft(props) {
                   noWrap
                   component="div"
                   sx={{ flexGrow: 1 }}
-
                 >
                   <p onClick={() => navigate("/")} className="welcome_banner">
-                    {!currentUser && "Welcome to"} FuRiendZone
+                    {!currentUser && windowSize[1] > 600 && "Welcome to"}{" "}
+                    FuRiendZone
                   </p>
                 </Typography>
               </div>
-              {!currentUser && (
+              {!currentUser && windowSize[1] > 600 && (
                 <div className="button-wrapper">
                   <Signup />
                   <Login />

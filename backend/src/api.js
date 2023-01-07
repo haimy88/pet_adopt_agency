@@ -16,11 +16,11 @@ require("dotenv").config({ path: path.join(__dirname, "../.env") });
 // const httpsPort = 443;
 
 // const httpsOptions = {
-//   cert: fs.readFileSync("../../furiendzonepets_com/furiendzonepets_com.crt"),
+//   cert: fs.readFileSync("/home/ubuntu/sites/furiendzonepets_com/furiendzonepets_com.crt"),
 //   ca: fs.readFileSync(
-//     "../../furiendzonepets_com/furiendzonepets_com.ca-bundle"
+//     "/home/ubuntu/sites/furiendzonepets_com/furiendzonepets_com.ca-bundle"
 //   ),
-//   key: fs.readFileSync("../../furiendzonepets_com/code.txt"),
+//   key: fs.readFileSync("/home/ubuntu/sites/furiendzonepets_com/code.txt"),
 // };
 
 // const httpsServer = https.createServer(httpsOptions, app);
