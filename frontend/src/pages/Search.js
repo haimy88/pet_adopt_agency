@@ -1,5 +1,4 @@
 import React from "react";
-import { useMemo, useEffect } from "react";
 import Drawer from "../components/Drawer.tsx";
 import Card from "../components/Card";
 import { usePetContext } from "../contexts/PetContext";
@@ -7,19 +6,13 @@ import { useModalContext } from "../contexts/ModalContext";
 import QuickSearch from "../components/QuickSearch";
 import { Button } from "@mui/material";
 import AdvancedSearch from "../components/AdvancedSearch";
+import { useWindowSize } from "../hooks/windowSize";
 
 export default function Search() {
-  const { petData, setPetData } = usePetContext();
+  const { petData } = usePetContext();
   const { handleAdvancedSearchOpen } = useModalContext();
 
-  // useMemo(() => {
-  //   let data = JSON.parse(localStorage.getItem("search"));
-  //   if (data) {
-  //     setPetData(data);
-  //   } else {
-  //     setPetData([]);
-  //   }
-  // }, []);
+  const windowSize = useWindowSize();
 
   const search_html = (
     <>

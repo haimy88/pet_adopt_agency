@@ -65,7 +65,8 @@ body {
 }
 
 .welcome_banner {
-  color: #9b1ca6;
+  /* color: #9b1ca6; */
+  color: #a041a7;
   font-size: 2rem;
   font-family: 'Permanent Marker', cursive;
 }
@@ -150,7 +151,8 @@ h1 {
 }
 
 .welcome_logo {
-  color: #9b1ca6;
+  /* color: #9b1ca6; */
+  color: #a041a7;
   font-family: 'Permanent Marker', cursive;
 }
 
@@ -167,12 +169,12 @@ h1 {
 
 .card {
   width: 345px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
 .saved_card {
   width: 300px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
 .card_action {
@@ -184,7 +186,8 @@ h1 {
   text-align: center;
   margin-bottom: 5vh;
   font-family: impact;
-  color: #630303;
+  /* color: #630303; */
+  color: #6d0000bd;
 }
 
 .pets_search_title_empty {
@@ -209,7 +212,6 @@ h1 {
 .advanced_search {
   padding-left: 1vw;
   position: relative;
-
 }
 
 .addpet_form_wrapper {
@@ -470,8 +472,12 @@ h1 {
   justify-content: space-around;
 
 }
-@media(max-width: 440px) {
-  /* .app_bar {
-    justify-content: center;
-  } */
+
+@media (max-width: 950px) {
+  .search_page_bar {
+    flex-direction: column;
+  }
+  .advanced_search {
+    margin: 2rem auto 0 auto;
+  }
 }
