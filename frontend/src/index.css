@@ -165,10 +165,13 @@ h1 {
   row-gap: 6vh;
   padding-bottom: 10vh;
   justify-content: center;
+  place-items:  center;
 }
 
 .card {
   width: 345px;
+  /* display: flex;
+  justify-content: center; */
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
@@ -478,6 +481,15 @@ h1 {
     flex-direction: column;
   }
   .advanced_search {
-    margin: 2rem auto 0 auto;
+    margin: 2rem auto -1rem auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .card_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

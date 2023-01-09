@@ -30,7 +30,13 @@ export default function ActionAreaCard(props) {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, margin: 0 }} className="card_action">
+      <Card
+        sx={{
+          maxWidth: 345,
+          margin: 0,
+        }}
+        className="card_action"
+      >
         <CardActionArea onClick={handleClick}>
           <CardMedia
             className="card_image"

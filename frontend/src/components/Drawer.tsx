@@ -157,7 +157,7 @@ export default function PersistentDrawerLeft(props) {
                 </div>
               )}
             </div>
-            {currentUser && (
+            {currentUser && windowSize[1] > 950 && (
               <Typography
                 variant="h5"
                 component="div"
