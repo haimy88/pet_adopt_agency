@@ -435,6 +435,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   padding-bottom: 10vh;
+  font-size: 35px;
   align-items: center;
   font-family: 'Permanent Marker', cursive;
 }
@@ -463,6 +464,11 @@ h1 {
   border: 2px solid #630303;
   width: 95px;
   height: 95px;
+  font-size: 73px;
+}
+
+.profile_name {
+  font-size: 80px;
 }
 
 .missing_pets {
@@ -498,6 +504,31 @@ h1 {
   .dashboard_title {
     font-size: 10vw;
     margin: -1rem 1rem;
+  }
+  .profile_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: -7vw;
+    width: 100vw;
+  }
+  .profile_top {
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    
+  }
+  .profile_bottom{
+    display: flex;
+    flex-direction: column;
+    font-size: 4vw;
+    margin-top: -4rem;
+  }
+  .profile_name{
+    font-size: 5vw;
+  }
+  .search_logo{
+    font-size: 16vw;
+    margin-top: -8vh;
   }
 }
 
