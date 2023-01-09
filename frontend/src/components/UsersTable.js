@@ -6,6 +6,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableContainer,
   Paper,
   Toolbar,
   TextField,
@@ -16,6 +17,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import UserInfo from "../components/UserInfo";
 import Popup from "./Popup";
+import { useWindowSize } from "../hooks/windowSize";
 
 const headCells = [
   { id: "FirstName", label: "First Name" },
@@ -39,6 +41,8 @@ export default function UsersTable() {
   useEffect(() => {
     getAllUsers();
   }, []);
+
+  const windowSize = useWindowSize();
 
   const handleGetInfo = async (item) => {
     const info = await getFullUserInfo(item);
@@ -71,53 +75,59 @@ export default function UsersTable() {
       <div className="table_wrapper">
         <Paper
           sx={{
-            margin: 5,
+            margin: windowSize[1] < 950 ? 0 : 5,
             padding: 4,
             width: "100%",
             backgroundColor: "#fff",
           }}
         >
-          <Toolbar>
-            <TextField
-              variant="outlined"
-              label="Search Users"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              onChange={handleSearch}
-              sx={{ marginBottom: 2, marginLeft: -3 }}
-            />
-          </Toolbar>
-          <TblContainer>
-            <TblHead />
-            <TableBody>
-              {petsAfterPagingAndSorting().map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.firstName}</TableCell>
-                  <TableCell>{item.lastName}</TableCell>
-                  <TableCell>{item.email}</TableCell>
-                  <TableCell>{item.phoneNumber}</TableCell>
-                  <TableCell>
-                    <Button
-                      onClick={() => {
-                        handleGetInfo(item);
-                      }}
-                      color="success"
-                    >
-                      See Pets
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </TblContainer>
-          <TblPagination />
+          <TableContainer sx={windowSize[1] < 950 && { maxWidth: "80vw" }}>
+            <Toolbar>
+              <TextField
+                variant="outlined"
+                label="Search Users"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <IconButton>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={handleSearch}
+                sx={{
+                  marginBottom: 2,
+                  marginLeft: -3,
+                  marginTop: 1,
+                }}
+              />
+            </Toolbar>
+            <TblContainer>
+              <TblHead />
+              <TableBody>
+                {petsAfterPagingAndSorting().map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.firstName}</TableCell>
+                    <TableCell>{item.lastName}</TableCell>
+                    <TableCell>{item.email}</TableCell>
+                    <TableCell>{item.phoneNumber}</TableCell>
+                    <TableCell>
+                      <Button
+                        onClick={() => {
+                          handleGetInfo(item);
+                        }}
+                        color="success"
+                      >
+                        See Pets
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </TblContainer>
+            <TblPagination />
+          </TableContainer>
         </Paper>
         <Popup
           openPopup={openPopup}

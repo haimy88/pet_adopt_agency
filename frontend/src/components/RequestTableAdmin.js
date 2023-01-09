@@ -6,6 +6,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableContainer,
   Paper,
   Toolbar,
   TextField,
@@ -16,6 +17,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
+import { useWindowSize } from "../hooks/windowSize";
 
 const headCells = [
   { id: "type", label: "Request Type" },
@@ -37,6 +39,8 @@ export default function RequestTableAdmin() {
   } = useAdminContext();
 
   useEffect(() => getAllOwnerships(), []);
+
+  const windowSize = useWindowSize();
 
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
@@ -70,81 +74,83 @@ export default function RequestTableAdmin() {
       <div className="table_wrapper">
         <Paper
           sx={{
-            margin: 5,
+            margin: windowSize[1] < 950 ? 0 : 5,
             padding: 4,
             width: "100%",
             backgroundColor: "#fff",
           }}
         >
-          <Toolbar>
-            <TextField
-              variant="outlined"
-              label="Search Requests"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              onChange={handleSearch}
-              sx={{ marginBottom: 2, marginLeft: -3 }}
-            />
-          </Toolbar>
-          <TblContainer>
-            <TblHead />
-            <TableBody>
-              {petsAfterPagingAndSorting().map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.type}</TableCell>
-                  <TableCell>{item.userFirstName}</TableCell>
-                  <TableCell>{item.petName}</TableCell>
-                  <TableCell>{item.startDate}</TableCell>
-                  <TableCell>{item.endDate}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  {(item.status === "Pending Approval" || item.st) && (
-                    <TableCell>
-                      <Button
-                        onClick={() => {
-                          approveRequest(item);
-                          window.location.reload(true);
-                        }}
-                        color="success"
-                      >
-                        <CheckIcon fontSize="sm" />
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          rejectOwnershipRequest(item);
-                          window.location.reload(true);
-                        }}
-                        color="warning"
-                      >
-                        <CloseIcon fontSize="sm" />
-                      </Button>
-                    </TableCell>
-                  )}
-                  {item.status === "Approved" && <TableCell></TableCell>}
-                  {item.status === "Return Pending" && (
-                    <TableCell>
-                      <Button
-                        onClick={() => {
-                          confirmReturn(item);
-                          window.location.reload(true);
-                        }}
-                        color="success"
-                      >
-                        Confirm Return
-                      </Button>
-                    </TableCell>
-                  )}
-                </TableRow>
-              ))}
-            </TableBody>
-          </TblContainer>
-          <TblPagination />
+          <TableContainer sx={windowSize[1] < 950 && { maxWidth: "80vw" }}>
+            <Toolbar>
+              <TextField
+                variant="outlined"
+                label="Search Requests"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <IconButton>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={handleSearch}
+                sx={{ marginBottom: 2, marginLeft: -3, marginTop: 1 }}
+              />
+            </Toolbar>
+            <TblContainer>
+              <TblHead />
+              <TableBody>
+                {petsAfterPagingAndSorting().map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.type}</TableCell>
+                    <TableCell>{item.userFirstName}</TableCell>
+                    <TableCell>{item.petName}</TableCell>
+                    <TableCell>{item.startDate}</TableCell>
+                    <TableCell>{item.endDate}</TableCell>
+                    <TableCell>{item.status}</TableCell>
+                    {(item.status === "Pending Approval" || item.st) && (
+                      <TableCell>
+                        <Button
+                          onClick={() => {
+                            approveRequest(item);
+                            window.location.reload(true);
+                          }}
+                          color="success"
+                        >
+                          <CheckIcon fontSize="sm" />
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            rejectOwnershipRequest(item);
+                            window.location.reload(true);
+                          }}
+                          color="warning"
+                        >
+                          <CloseIcon fontSize="sm" />
+                        </Button>
+                      </TableCell>
+                    )}
+                    {item.status === "Approved" && <TableCell></TableCell>}
+                    {item.status === "Return Pending" && (
+                      <TableCell>
+                        <Button
+                          onClick={() => {
+                            confirmReturn(item);
+                            window.location.reload(true);
+                          }}
+                          color="success"
+                        >
+                          Confirm Return
+                        </Button>
+                      </TableCell>
+                    )}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </TblContainer>
+            <TblPagination />
+          </TableContainer>
         </Paper>
       </div>
     </div>

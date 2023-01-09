@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Table,
   TableHead,
@@ -88,6 +88,7 @@ export function UseTable(data, headCells, filterFn) {
       page={page}
       rowsPerPageOptions={pages}
       rowsPerPage={rowsPerPage}
+      labelRowsPerPage="Rows"
       count={data.length}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}

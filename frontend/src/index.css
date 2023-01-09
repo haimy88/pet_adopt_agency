@@ -357,8 +357,14 @@ h1 {
 .dashboard_wrapper {
   display: flex;
   justify-content: center;
-  background-color: #efe3d0;
+  background-color: #f7eddd;
+  margin-top: 0.5rem;
+}
 
+.dashboard_inner_wrapper {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;   */
 }
 
 .table_wrapper_user_requests {
@@ -419,7 +425,7 @@ h1 {
 }
 
 .profile_wrapper {
-  background-color: #efe3d0;
+  background-color: #f7eddd;
   margin: -2%;
   padding: 0;
   height: auto;
@@ -482,6 +488,16 @@ h1 {
   }
   .advanced_search {
     margin: 2rem auto -1rem auto;
+  }
+  .dashboard_inner_wrapper {
+    align-items: center;
+  }
+  .dashboard_wrapper {
+    margin-top: 2rem;
+  }
+  .dashboard_title {
+    font-size: 10vw;
+    margin: -1rem 1rem;
   }
 }
 

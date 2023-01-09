@@ -6,7 +6,7 @@ import UsersTable from "../components/UsersTable";
 
 export default function Dashboard() {
   const dashboard_html = (
-    <>
+    <div className="dashboard_inner_wrapper">
       <h2 className="dashboard_title">Admin Central Station</h2>
       <div className="table_title">Users Table</div>
       <UsersTable />
@@ -14,7 +14,7 @@ export default function Dashboard() {
       <PetsTable />
       <div className="table_title_requests">Requests Table</div>
       <RequestTable />
-    </>
+    </div>
   );
 
   return (

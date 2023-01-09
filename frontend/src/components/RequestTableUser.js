@@ -6,6 +6,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableContainer,
   Paper,
   Toolbar,
   TextField,
@@ -13,6 +14,7 @@ import {
   IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useWindowSize } from "../hooks/windowSize";
 
 const headCells = [
   { id: "type", label: "Request Type" },
@@ -32,6 +34,8 @@ export default function RequestTableUser() {
       return items;
     },
   });
+
+  const windowSize = useWindowSize();
 
   const { TblContainer, TblHead, TblPagination, petsAfterPagingAndSorting } =
     UseTable(userRequests, headCells, filterFn);
@@ -59,45 +63,47 @@ export default function RequestTableUser() {
     <div className="table_wrapper_user_requests">
       <Paper
         sx={{
-          margin: 5,
+          margin: windowSize[1] < 950 ? 0 : 5,
           padding: 4,
           width: "100%",
           backgroundColor: "#fff",
         }}
       >
-        <Toolbar>
-          <TextField
-            variant="outlined"
-            label="Search Requests"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment>
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-            sx={{ marginBottom: 2, marginLeft: -3 }}
-          />
-        </Toolbar>
-        <TblContainer>
-          <TblHead />
-          <TableBody>
-            {petsAfterPagingAndSorting().map((item) => (
-              <TableRow key={item.id}>
-                <TableCell>{item.type}</TableCell>
-                <TableCell>{item.userFirstName}</TableCell>
-                <TableCell>{item.petName}</TableCell>
-                <TableCell>{item.startDate}</TableCell>
-                <TableCell>{item.endDate}</TableCell>
-                <TableCell>{item.status}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </TblContainer>
-        <TblPagination />
+        <TableContainer sx={windowSize[1] < 950 && { maxWidth: "80vw" }}>
+          <Toolbar>
+            <TextField
+              variant="outlined"
+              label="Search Requests"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment>
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              onChange={handleSearch}
+              sx={{ marginBottom: 2, marginLeft: -3, marginTop: 1 }}
+            />
+          </Toolbar>
+          <TblContainer>
+            <TblHead />
+            <TableBody>
+              {petsAfterPagingAndSorting().map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.type}</TableCell>
+                  <TableCell>{item.userFirstName}</TableCell>
+                  <TableCell>{item.petName}</TableCell>
+                  <TableCell>{item.startDate}</TableCell>
+                  <TableCell>{item.endDate}</TableCell>
+                  <TableCell>{item.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </TblContainer>
+          <TblPagination />
+        </TableContainer>
       </Paper>
     </div>
   );

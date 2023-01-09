@@ -6,12 +6,14 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableContainer,
   Paper,
   Toolbar,
   TextField,
   InputAdornment,
   IconButton,
   Button,
+  Box,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,6 +21,7 @@ import EditOutlinedIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import Popup from "./Popup";
 import PetForm from "./PetForm";
+import { useWindowSize } from "../hooks/windowSize";
 
 const headCells = [
   { id: "name", label: "Pet Name" },
@@ -43,6 +46,8 @@ export default function PetsTable() {
   }, []);
 
   const { deletePet } = usePetContext();
+
+  const windowSize = useWindowSize();
 
   const { TblContainer, TblHead, TblPagination, petsAfterPagingAndSorting } =
     UseTable(petData, headCells, filterFn);
@@ -82,68 +87,85 @@ export default function PetsTable() {
       <div className="table_wrapper">
         <Paper
           sx={{
-            margin: 5,
+            margin: windowSize[1] < 950 ? 0 : 5,
             padding: 4,
             width: "100%",
             backgroundColor: "#fff",
           }}
         >
-          <Toolbar>
-            <TextField
-              variant="outlined"
-              label="Search Pets"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              onChange={handleSearch}
-              sx={{ marginBottom: 2, marginLeft: -3 }}
-            />
-            <Button
-              variant="outlined"
-              startIcon={<AddIcon />}
-              sx={{ position: "absolute", right: "10px" }}
-              onClick={() => setOpenPopup(true)}
-            >
-              Add New Pet
-            </Button>
-          </Toolbar>
-          <TblContainer>
-            <TblHead />
-            <TableBody>
-              {petsAfterPagingAndSorting().map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.type}</TableCell>
-                  <TableCell>{item.breed}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>
-                    <Button
-                      color="primary"
-                      sx={{ borderRadius: 2, maxWidth: 5 }}
-                      onClick={() => {
-                        openInPopup(item);
-                      }}
-                    >
-                      <EditOutlinedIcon fontSize="sm" />
-                    </Button>
-                    <Button
-                      onClick={() => handleDeletePet(item)}
-                      color="warning"
-                    >
-                      <CloseIcon fontSize="sm" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </TblContainer>
-          <TblPagination />
+          <TableContainer sx={windowSize[1] < 950 && { maxWidth: "80vw" }}>
+            <Toolbar>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  alignItems: "center",
+                }}
+              >
+                <TextField
+                  variant="outlined"
+                  label="Search Pets"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <IconButton>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  onChange={handleSearch}
+                  sx={{ marginBottom: 4, marginLeft: -3, marginTop: 1 }}
+                />
+                <Box sx={{ alignItems: "center" }}>
+                  <Button
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    sx={{
+                      flexDirection: "row",
+                      marginLeft: 2,
+                      marginBottom: 1,
+                    }}
+                    onClick={() => setOpenPopup(true)}
+                  >
+                    Add New Pet
+                  </Button>
+                </Box>
+              </Box>
+            </Toolbar>
+            <TblContainer>
+              <TblHead />
+              <TableBody>
+                {petsAfterPagingAndSorting().map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.type}</TableCell>
+                    <TableCell>{item.breed}</TableCell>
+                    <TableCell>{item.status}</TableCell>
+                    <TableCell>
+                      <Button
+                        color="primary"
+                        sx={{ borderRadius: 2, maxWidth: 5 }}
+                        onClick={() => {
+                          openInPopup(item);
+                        }}
+                      >
+                        <EditOutlinedIcon fontSize="sm" />
+                      </Button>
+                      <Button
+                        onClick={() => handleDeletePet(item)}
+                        color="warning"
+                      >
+                        <CloseIcon fontSize="sm" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </TblContainer>
+            <TblPagination />
+          </TableContainer>
         </Paper>
         <Popup
           openPopup={openPopup}
