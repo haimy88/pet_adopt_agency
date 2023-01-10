@@ -149,16 +149,6 @@ export default function Login() {
             >
               Sign In
             </Button>
-            {/* <Button
-              style={buttonStyle}
-              type="submit"
-              color="primary"
-              fullWidth
-              variant="contained"
-              onClick={signInWithGoogle}
-            >
-              Sign In With Google
-            </Button> */}
             <Typography>
               <Button
                 onClick={() => {

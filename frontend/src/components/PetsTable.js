@@ -116,7 +116,11 @@ export default function PetsTable() {
                     ),
                   }}
                   onChange={handleSearch}
-                  sx={{ marginBottom: 4, marginLeft: -3, marginTop: 1 }}
+                  sx={
+                    windowSize[1] > 450
+                      ? { marginBottom: 2, marginLeft: -3, marginTop: 1 }
+                      : { marginBottom: 2, marginLeft: -2, marginTop: 1 }
+                  }
                 />
                 <Box sx={{ alignItems: "center" }}>
                   <Button
@@ -126,10 +130,11 @@ export default function PetsTable() {
                       flexDirection: "row",
                       marginLeft: 2,
                       marginBottom: 1,
+                      fontSize: 12.7,
                     }}
                     onClick={() => setOpenPopup(true)}
                   >
-                    Add New Pet
+                    Add Pet
                   </Button>
                 </Box>
               </Box>

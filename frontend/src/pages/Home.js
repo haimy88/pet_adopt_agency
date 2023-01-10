@@ -5,6 +5,7 @@ import { useAuthContext } from "../contexts/AuthContext";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { useWindowSize } from "../hooks/windowSize";
+import ForgotPassword from "../components/ForgotPassword";
 
 export default function Home() {
   const { currentUser, isAdmin } = useAuthContext();
@@ -27,6 +28,7 @@ export default function Home() {
           <div className="home_buttons_small_screen">
             <Signup />
             <Login />
+            <ForgotPassword />
           </div>
         )}
         <div className="basic_search_wrapper">

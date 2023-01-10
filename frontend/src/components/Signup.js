@@ -224,7 +224,6 @@ export default function Login() {
                   handleLoginOpen();
                   handleSignupClose();
                 }}
-                sx={{ backgroundColor: "#9B1CA5" }}
               >
                 Login
               </Button>

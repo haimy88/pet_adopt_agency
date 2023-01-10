@@ -84,7 +84,11 @@ export default function RequestTableUser() {
                 ),
               }}
               onChange={handleSearch}
-              sx={{ marginBottom: 2, marginLeft: -3, marginTop: 1 }}
+              sx={
+                windowSize[1] > 450
+                  ? { marginBottom: 2, marginLeft: -3, marginTop: 1 }
+                  : { marginBottom: 2, marginLeft: -2, marginTop: 1 }
+              }
             />
           </Toolbar>
           <TblContainer>

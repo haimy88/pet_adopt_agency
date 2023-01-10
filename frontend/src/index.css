@@ -469,6 +469,7 @@ h1 {
 
 .profile_name {
   font-size: 80px;
+  
 }
 
 .missing_pets {
@@ -529,6 +530,9 @@ h1 {
   .search_logo{
     font-size: 16vw;
     margin-top: -8vh;
+  }
+  .user_requests_title {
+    margin-bottom: 2rem;
   }
 }
 
